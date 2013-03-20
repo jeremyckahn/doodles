@@ -43,17 +43,17 @@
       curveLength, // number
       numKinks, // number
       kinkAngle // number
-      ) {
+    ) {
 
     var lastX = originX;
     var lastY = originY;
-    var lastAngle = radiansFromDegree(-originAngle - kinkAngle);
+    var lastAngle = radiansFromDegree(originAngle - kinkAngle);
 
     range(numKinks).forEach(function (unused, i) {
-      var lineLength = curveLength / (i + 1);
+      var lineLength = curveLength / (i + 2);
       var angle = lastAngle + radiansFromDegree(kinkAngle);
-      var x = lastX + lineLength * Math.sin(angle);
-      var y = lastY + lineLength * Math.cos(angle);
+      var x = lastX + lineLength * Math.cos(-angle);
+      var y = lastY + lineLength * Math.sin(-angle);
 
       drawLine(lastX, lastY, x, y);
 
@@ -82,7 +82,7 @@
     drawKinkedLine(
         0, // originX
         0, // originY
-        -70, // originAngle
+        -15, // originAngle
         300, // curveLength
         50, // numKinks
         -25 // kinkAngle
