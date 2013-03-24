@@ -10,12 +10,16 @@
   // References
   var canvas = document.getElementById('spiral');
   var ctx = canvas.getContext('2d');
-  var pow = Math.pow;
-  var sqrt = Math.sqrt;
+
+  // Math aliases
   var E = Math.E;
-  var cos = Math.cos;
-  var sin = Math.sin;
+  var PI = Math.PI;
+  var abs = Math.abs;
   var atan2 = Math.atan2;
+  var cos = Math.cos;
+  var pow = Math.pow;
+  var sin = Math.sin;
+  var sqrt = Math.sqrt;
 
   // Helpers
   function range (size) {
@@ -40,18 +44,19 @@
   ) {
     draw = draw || true;
 
-    if (-1e-1 < decay && decay > 1e-2) {
+    if (-1e-2 < decay && decay < 1e-2) {
       ctx.moveTo(startX, startY);
       ctx.lineTo(endX, endY);
+
       return;
     }
 
     var b = 1 / decay;
-    var dt = Math.PI / 4;
+    var dt = PI / 4;
     var m = 8;
 
-    if (Math.abs(b) > 1) {
-      dt /= Math.abs(b);
+    if (abs(b) > 1) {
+      dt /= abs(b);
     }
 
     if (b < 0) {
@@ -107,6 +112,24 @@
 
     // Clear the canvas
     canvas.width = canvas.width;
+
+    var beginX = 30;
+    var beginY = 200;
+    var endX = 300;
+    var endY = 200;
+    var decay = 5;
+    var rotations = 2;
+
+    // Start drawing operations
+    ctx.beginPath();
+    ctx.lineWidth = LINE_WIDTH;
+
+    spiral(beginX, beginY, endX, endY, decay, rotations);
+
+    // End drawing operations
+    ctx.strokeStyle = LINE_COLOR;
+    ctx.stroke();
+    ctx.closePath();
   }());
 
 } (this));
