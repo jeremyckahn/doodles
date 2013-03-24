@@ -39,10 +39,8 @@
     endX, // number
     endY, // number
     decay, // number
-    length, // number
-    draw // boolean
+    length // number
   ) {
-    draw = draw || true;
 
     if (-1e-2 < decay && decay < 1e-2) {
       ctx.moveTo(startX, startY);
@@ -66,8 +64,8 @@
     var D = sqrt(pow(startX - endX, 2), pow(startY - endY, 2));
     var t = atan2(startY - endY, startX - endX);
     var a = pow(E, -b * t) * D;
-    ctx.moveTo(a * pow(E, b * t) * cos(t) + endX,
-        a * pow(E, b * t) * sin(t) + endY);
+    ctx.moveTo(pow(a * E, b * t) * cos(t) + endX,
+        pow(a * E, b * t) * sin(t) + endY);
 
     range(length * m).forEach(function () {
       var t2 = t - dt;
@@ -91,8 +89,8 @@
       var x1 = x0 + ((Dt / 3) * dx1);
       var y1 = y0 + ((Dt / 3) * dy1);
 
-      var x2 = x3 + ((Dt / 3) * dx2);
-      var y2 = y3 + ((Dt / 3) * dy2);
+      var x2 = x3 - ((Dt / 3) * dx2);
+      var y2 = y3 - ((Dt / 3) * dy2);
       t -= dt;
 
       ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
