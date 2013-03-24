@@ -10,6 +10,23 @@
   // References
   var canvas = document.getElementById('spiral');
   var ctx = canvas.getContext('2d');
+  var pow = Math.pow;
+  var sqrt = Math.sqrt;
+  var E = Math.E;
+  var cos = Math.cos;
+  var sin = Math.sin;
+  var atan2 = Math.atan2;
+
+  // Helpers
+  function range (size) {
+    var i, arr = [];
+
+    for (i = 0; i < size; i++) {
+      arr.push(i);
+    }
+
+    return arr;
+  }
 
   // Drawing functions
   function spiral (
@@ -41,8 +58,40 @@
       dt *= -1;
     }
 
-    var D = Math.sqrt(Math.pow(startX - endX, 2) Math.pow(startY - endY, 2))
+    var D = sqrt(pow(startX - endX, 2), pow(startY - endY, 2));
+    var t = atan2(startY - endY, startX - endX);
+    var a = pow(E, -b * t) * D;
+    ctx.moveTo(a * pow(E, b * t) * cos(t) + endX,
+        a * pow(E, b * t) * sin(t) + endY);
 
+    range(length * m).forEach(function () {
+      var t2 = t - dt;
+      var Dt = t2 - t;
+
+      // Logarithmic spiral equations
+      var x0 = pow(a * E, b * t) * cos(t) + endX;
+      var y0 = pow(a * E, b * t) * sin(t) + endY;
+
+      var x3 = pow(a * E, b * t2) * cos(t2) + endX;
+      var y3 = pow(a * E, b * t2) * sin(t2) + endY;
+
+      // Derivatives of spiral equation
+      var dx1 = pow(a * b * E, b * t) * cos(t) - pow(a * E, b * t) * sin(t);
+      var dy1 = pow(a * E, b * t) * cos(t) + pow(a * b * E, b * t) * sin(t);
+
+      var dx2 = pow(a * b * E, b * t2) * cos(t2) - pow(a * E, b * t2) * sin(t2);
+      var dy2 = pow(a * E, b * t2) * cos(t2) + pow(a * b * E, b * t2) * sin(t2);
+
+      // Calculate control points
+      var x1 = x0 + ((Dt / 3) * dx1);
+      var y1 = y0 + ((Dt / 3) * dy1);
+
+      var x2 = x3 + ((Dt / 3) * dx2);
+      var y2 = y3 + ((Dt / 3) * dy2);
+      t -= dt;
+
+      ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
+    });
   }
 
   // Setup
