@@ -63,18 +63,18 @@
       var Dt = t2 - t;
 
       // Logarithmic spiral equations
-      var x0 = pow(a * E, b * t) * cos(t) + endX;
-      var y0 = pow(a * E, b * t) * sin(t) + endY;
+      var x0 = a * pow(E, b * t) * cos(t) + endX;
+      var y0 = a * pow(E, b * t) * sin(t) + endY;
 
-      var x3 = pow(a * E, b * t2) * cos(t2) + endX;
-      var y3 = pow(a * E, b * t2) * sin(t2) + endY;
+      var x3 = a * pow(E, b * t2) * cos(t2) + endX;
+      var y3 = a * pow(E, b * t2) * sin(t2) + endY;
 
       // Derivatives of spiral equation
-      var dx1 = pow(a * b * E, b * t) * cos(t) - pow(a * E, b * t) * sin(t);
-      var dy1 = pow(a * E, b * t) * cos(t) + pow(a * b * E, b * t) * sin(t);
+      var dx1 = a * b * pow(E, b * t) * cos(t) - a * pow(E, b * t) * sin(t);
+      var dy1 = a * pow(E, b * t) * cos(t) + a * b * pow(E, b * t) * sin(t);
 
-      var dx2 = pow(a * b * E, b * t2) * cos(t2) - pow(a * E, b * t2) * sin(t2);
-      var dy2 = pow(a * E, b * t2) * cos(t2) + pow(a * b * E, b * t2) * sin(t2);
+      var dx2 = a * b * pow(E, b * t2) * cos(t2) - a * pow(E, b * t2) * sin(t2);
+      var dy2 = a * pow(E, b * t2) * cos(t2) + a * b * pow(E, b * t2) * sin(t2);
 
       // Calculate control points
       var x1 = x0 + ((Dt / 3) * dx1);
