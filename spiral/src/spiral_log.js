@@ -84,7 +84,7 @@
       var y2 = y3 - ((Dt / 3) * dy2);
       t -= dt;
 
-      console.log('x1: '+x1+'  y1: '+y1+'  x2: '+x2+'  y2: '+y2+'  x3: '+x3+'  y3: '+y3);
+      console.log('x1: '+x1.toFixed(9)+'  y1: '+y1.toFixed(9)+'  x2: '+x2.toFixed(9)+'  y2: '+y2.toFixed(9)+'  x3: '+x3.toFixed(9)+'  y3: '+y3.toFixed(9));
     });
   }
 
