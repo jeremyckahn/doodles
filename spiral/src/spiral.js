@@ -64,8 +64,8 @@
     var D = sqrt(pow(startX - endX, 2), pow(startY - endY, 2));
     var t = atan2(startY - endY, startX - endX);
     var a = pow(E, -b * t) * D;
-    ctx.moveTo(pow(a * E, b * t) * cos(t) + endX,
-        pow(a * E, b * t) * sin(t) + endY);
+    ctx.moveTo(a * pow(E, b * t) * cos(t) + endX,
+               a * pow(E, b * t) * sin(t) + endY);
 
     range(length * m).forEach(function () {
       var t2 = t - dt;
