@@ -1,6 +1,7 @@
 {
   "name": "doodles",
   "dependencies": {
-    "shifty": "~0.8.6"
+    "shifty": "~0.8.6",
+    "threejs": "latest"
   }
 }
