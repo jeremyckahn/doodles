@@ -1,0 +1,8 @@
+{
+  "name": "doodles",
+  "dependencies": {
+    "shifty": "1.2.0",
+    "threejs": "latest",
+    "requirejs": "~2.1.11"
+  }
+}
